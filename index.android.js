@@ -9,7 +9,9 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  Image,
+  Navigator
 } from 'react-native';
 
 export default class PrayerTimeRn extends Component {
@@ -17,7 +19,7 @@ export default class PrayerTimeRn extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Welcome to React Native!
+          My Awesome Project
         </Text>
         <Text style={styles.instructions}>
           To get started, edit index.android.js
@@ -37,17 +39,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+  }
 });
 
 AppRegistry.registerComponent('PrayerTimeRn', () => PrayerTimeRn);
