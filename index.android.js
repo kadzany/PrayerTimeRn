@@ -10,4 +10,4 @@ import {
 
 import App from './src/App'
 
-AppRegistry.registerComponent('App', () => App);
+AppRegistry.registerComponent('PrayerTimeRn', () => App);

@@ -5,7 +5,7 @@ import {
     Text
 } from 'react-native'
 
-const Settings = () => class extends React.Component {
+export default class Settings extends React.Component {
     render() {
         return <View>
             <Text>
@@ -14,5 +14,3 @@ const Settings = () => class extends React.Component {
         </View>
     }
 }
-
-export default Settings;

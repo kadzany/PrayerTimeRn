@@ -1,13 +1,15 @@
 import React from 'react'
 
+import styles from './Styles'
+
 import {
     View,
     Text
 } from 'react-native'
 
-const Main = () => class extends React.Component {
+export default class Main extends React.Component {
     render() {
-        return <View>
+        return <View style={styles.container}>
             <Text>
                 This is the main content
             </Text>
@@ -15,4 +17,3 @@ const Main = () => class extends React.Component {
     }
 }
 
-export default Main;
