@@ -6,8 +6,8 @@ import {
     Text
 } from 'react-native'
 
-import Main from './components/Main'
-import Settings from './components/Settings'
+import Main from './scenes/Main'
+import Settings from './scenes/Settings'
 
 import { createStore } from 'redux'
 import AppNavs from './reducers/AppNavs'
