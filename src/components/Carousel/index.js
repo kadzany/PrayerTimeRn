@@ -14,7 +14,7 @@ import {
 export default class Carousel extends React.Component {
     constructor(props) {
         super(props)
-        const size = { width: 100, height: 100 }
+        const size = { width: 0, height: 0 }
         const childrenCount = props.children.length ? props.children.length : 1
         const currentPage = props.currentPage ? props.currentPage : 0
         this.state = {
@@ -22,6 +22,15 @@ export default class Carousel extends React.Component {
             currentPage: currentPage,
             childrenCount: childrenCount
         }
+    }
+
+    _onLayout = () => {
+        this.container.measure((x, y, w, h) => {
+            this.setState({
+                size: { width: w, height: h },
+            });
+            // this._placeCritical(this.state.currentPage);
+        });
     }
 
     render() {
@@ -43,18 +52,15 @@ export default class Carousel extends React.Component {
             </Text>
         }
 
-        console.log(pages);
-
         pages = pages.map((page, i) => {
             return <TouchableWithoutFeedback style={[{ ...this.state.size }]} key={`page${i}`}>
                 {page}
             </TouchableWithoutFeedback>
         })
 
-        console.log(pages);
-
         const containerProps = {
             ref: (c) => { this.container = c; },
+            onLayout: this._onLayout,
             style: [this.props.style],
         };
 
@@ -66,7 +72,7 @@ export default class Carousel extends React.Component {
                 styles.horizontalScroll,
                 this.props.contentContainerStyle,
                 {
-                    width: size.width * (children.length + (children.length > 1 ? 2 : 0)),
+                    width: size.width * (children.length),
                     height: size.height,
                 },
             ]}
