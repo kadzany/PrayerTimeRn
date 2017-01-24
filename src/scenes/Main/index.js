@@ -7,7 +7,8 @@ import Carousel from '../../components/Carousel'
 import {
     View,
     Text,
-    Dimensions
+    Dimensions,
+    Image
 } from 'react-native'
 
 const {width, height} = Dimensions.get('window');
@@ -23,13 +24,23 @@ export default class Main extends React.Component {
 
     render() {
         return <View style={styles.container}>
-            <Text>Carousel</Text>
             <Carousel
-                style={this.state.size}
-                >
-                <View style={[{ backgroundColor: '#BADA55' }, this.state.size]}><Text>1</Text></View>
-                <View style={[{ backgroundColor: 'red' }, this.state.size]}><Text>2</Text></View>
-                <View style={[{ backgroundColor: 'blue' }, this.state.size]}><Text>3</Text></View>
+                style={[{ backgroundColor: 'transparent' }, this.state.size]} >
+                <View style={[this.state.size]}>
+                    <Text>Subuh</Text>
+                </View>
+                <View style={[this.state.size]}>
+                    <Text>Dzuhur</Text>
+                </View>
+                <View style={[this.state.size]}>
+                    <Text>Ashar</Text>
+                </View>
+                <View style={[this.state.size]}>
+                    <Text>Maghrib</Text>
+                </View>
+                <View style={[this.state.size]}>
+                    <Text>Isya</Text>
+                </View>
             </Carousel>
         </View>
     }

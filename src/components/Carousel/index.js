@@ -9,16 +9,19 @@ import {
     TouchableOpacity,
     View,
     TouchableWithoutFeedback,
+    Image
 } from 'react-native';
 
 export default class Carousel extends React.Component {
     constructor(props) {
         super(props)
         const size = { width: 0, height: 0 }
+        const pos = { x: 0, y: 0 }
         const childrenCount = props.children.length ? props.children.length : 1
         const currentPage = props.currentPage ? props.currentPage : 0
         this.state = {
             size: size,
+            pos: pos,
             currentPage: currentPage,
             childrenCount: childrenCount
         }
@@ -28,13 +31,13 @@ export default class Carousel extends React.Component {
         this.container.measure((x, y, w, h) => {
             this.setState({
                 size: { width: w, height: h },
+                pos: { x: x, y: y }
             });
-            // this._placeCritical(this.state.currentPage);
         });
     }
 
     render() {
-        const {size} = this.state
+        const {size, pos} = this.state
         const children = this.props.children
         let pages = []
 
@@ -48,12 +51,12 @@ export default class Carousel extends React.Component {
             pages.push(children);
         } else {
             return <Text style={{ backgroundColor: 'white' }}>
-                You are supposed to add children inside Carousel
+                Error!
             </Text>
         }
 
         pages = pages.map((page, i) => {
-            return <TouchableWithoutFeedback style={[{ ...this.state.size }]} key={`page${i}`}>
+            return <TouchableWithoutFeedback style={[{...this.state.size}, {backgroundColor:'green'}]} key={`page${i}`}>
                 {page}
             </TouchableWithoutFeedback>
         })
@@ -77,10 +80,13 @@ export default class Carousel extends React.Component {
                 },
             ]}
             >
+            <Image style={{position: 'absolute'}} source={require('./images/masjid2.jpg')}>
+            </Image>
             {pages}
         </ScrollView>
-
-        return <View {...containerProps}>
+/*<Image source={require('./images/masjid1.jpg')}>
+            </Image>*/
+        return <View  {...containerProps} >
             {contents}
         </View>
     }
