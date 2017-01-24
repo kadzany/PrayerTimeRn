@@ -45,8 +45,6 @@ export default class Carousel extends React.Component {
             for (let i = 0; i < children.length; i += 1) {
                 pages.push(children[i]);
             }
-            // pages.push(children[0]);
-            // pages.push(children[1]);
         } else if (children) {
             pages.push(children);
         } else {
@@ -56,7 +54,7 @@ export default class Carousel extends React.Component {
         }
 
         pages = pages.map((page, i) => {
-            return <TouchableWithoutFeedback style={[{...this.state.size}, {backgroundColor:'green'}]} key={`page${i}`}>
+            return <TouchableWithoutFeedback style={[{ ...this.state.size }, { backgroundColor: 'green' }]} key={`page${i}`}>
                 {page}
             </TouchableWithoutFeedback>
         })
@@ -71,6 +69,8 @@ export default class Carousel extends React.Component {
             ref={(c) => this.scrollView = c}
             horizontal
             pagingEnabled
+            showsHorizontalScrollIndicator = {false}
+            showsVerticalScrollIndicator = {false}
             contentContainerStyle={[
                 styles.horizontalScroll,
                 this.props.contentContainerStyle,
@@ -80,12 +80,17 @@ export default class Carousel extends React.Component {
                 },
             ]}
             >
-            <Image style={{position: 'absolute'}} source={require('./images/masjid2.jpg')}>
+            <Image style={[
+                { position: 'absolute' },
+                {
+                    width: size.width * (children.length),
+                    height: size.height
+                }
+            ]} source={require('./images/12941200434_12e6b178cc_k.jpg')} resizeMethod="auto">
             </Image>
             {pages}
         </ScrollView>
-/*<Image source={require('./images/masjid1.jpg')}>
-            </Image>*/
+
         return <View  {...containerProps} >
             {contents}
         </View>

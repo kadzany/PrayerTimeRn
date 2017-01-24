@@ -1,6 +1,6 @@
 import React from 'react'
 
-import styles from '../styles'
+import styles from './styles'
 
 import Carousel from '../../components/Carousel'
 
@@ -25,7 +25,7 @@ export default class Main extends React.Component {
     render() {
         return <View style={styles.container}>
             <Carousel
-                style={[{ backgroundColor: 'transparent' }, this.state.size]} >
+                style={[styles.carousel, this.state.size]} >
                 <View style={[this.state.size]}>
                     <Text>Subuh</Text>
                 </View>
@@ -42,6 +42,13 @@ export default class Main extends React.Component {
                     <Text>Isya</Text>
                 </View>
             </Carousel>
+            <View>
+                <Image source={require('./path2.png')} style={[styles.positionIcon]}  resizeMode="contain"/>
+                <Text style={[styles.cityName, {width: this.state.size.width}]}>Bandung, Indonesia</Text>
+            </View>
+            <View style={[styles.bottomList]}>
+                <Text>This is the list</Text>
+            </View>
         </View>
     }
 }
