@@ -21,22 +21,15 @@ const DefaultStyle = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         color: 'white',
-        paddingBottom: 12,
+        paddingBottom: 4,
         paddingLeft: 24,
         fontSize: 14,
         fontWeight: '100',
     },
-    cityInformation: {
-        backgroundColor: 'pink',
-        position: 'absolute',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
     positionIcon: {
         backgroundColor: 'transparent',
         position: 'absolute',
-        bottom: 14,
+        bottom: 6,
         height: 16,
         width: 28
     }

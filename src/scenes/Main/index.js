@@ -4,6 +4,8 @@ import styles from './styles'
 
 import Carousel from '../../components/Carousel'
 
+import PraytimeLabel from '../../components/PraytimeLabel'
+
 import {
     View,
     Text,
@@ -24,23 +26,12 @@ export default class Main extends React.Component {
 
     render() {
         return <View style={styles.container}>
-            <Carousel
-                style={[styles.carousel, this.state.size]} >
-                <View style={[this.state.size]}>
-                    <Text>Subuh</Text>
-                </View>
-                <View style={[this.state.size]}>
-                    <Text>Dzuhur</Text>
-                </View>
-                <View style={[this.state.size]}>
-                    <Text>Ashar</Text>
-                </View>
-                <View style={[this.state.size]}>
-                    <Text>Maghrib</Text>
-                </View>
-                <View style={[this.state.size]}>
-                    <Text>Isya</Text>
-                </View>
+            <Carousel style={[styles.carousel, this.state.size]} >
+                <PraytimeLabel name="Fajr" time="05:00 AM"/>
+                <PraytimeLabel name="Dhuhr" time="05:00 AM"/>
+                <PraytimeLabel name="Asr" time="05:00 AM"/>
+                <PraytimeLabel name="Maghrib" time="05:00 AM"/>
+                <PraytimeLabel name="Isya" time="05:00 AM"/>
             </Carousel>
             <View>
                 <Image source={require('./path2.png')} style={[styles.positionIcon]}  resizeMode="contain"/>
