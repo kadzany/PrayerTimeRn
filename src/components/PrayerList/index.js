@@ -10,6 +10,17 @@ import {
     Text
 } from 'react-native'
 
+const toTitleCase = (str) => {
+    return str.replace(/\w\S*/g, (txt) => { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
+}
+
+const Row = (props) => (
+    <View style={styles.prayerItem}>
+        <Text style={styles.prayerName}>{toTitleCase(props.name)}</Text>
+        <Text style={styles.prayerTime}>{props.value}</Text>
+    </View>
+)
+
 export default class PrayerList extends React.Component {
     constructor() {
         super()
@@ -20,7 +31,7 @@ export default class PrayerList extends React.Component {
         var map = []
         entries.forEach((value) => {
             map.push({
-                key: value[0],
+                name: value[0],
                 value: value[1]
             })
         });
@@ -33,10 +44,7 @@ export default class PrayerList extends React.Component {
         return <ListView
             style={styles.container}
             dataSource={this.state.dataSource}
-            renderRow={(data) => <View>
-                <Text>{data.key}</Text>
-                <Text>{data.value}</Text>
-            </View>}>
+            renderRow={(data) => <Row {...data} />}>
         </ListView>
     }
 }
