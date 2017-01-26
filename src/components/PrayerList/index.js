@@ -7,17 +7,20 @@ import styles from './styles'
 import {
     ListView,
     View,
-    Text
+    Text,
+    Dimensions
 } from 'react-native'
 
 const toTitleCase = (str) => {
     return str.replace(/\w\S*/g, (txt) => { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
 }
 
+const {width, height} = Dimensions.get('window');
+
 const Row = (props) => (
     <View style={styles.prayerItem}>
-        <Text style={styles.prayerName}>{toTitleCase(props.name)}</Text>
-        <Text style={styles.prayerTime}>{props.value}</Text>
+        <Text style={[styles.prayerName, {width: width * 0.5}]}>{toTitleCase(props.name)}</Text>
+        <Text style={[styles.prayerTime, {width: width * 0.5}]}>{props.value}</Text>
     </View>
 )
 

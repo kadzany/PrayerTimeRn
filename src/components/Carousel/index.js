@@ -2,6 +2,8 @@ import React from 'react'
 
 import styles from './styles'
 
+import PrayTimeLabel from '../PraytimeLabel'
+
 import {
     StyleSheet,
     Text,
@@ -40,9 +42,10 @@ export default class Carousel extends React.Component {
         const {size, pos} = this.state
         const children = this.props.children
         let pages = []
+        const childrenLength = this.props.children.filter(c => c.type === PrayTimeLabel).length;
 
-        if (children && children.length > 1) {
-            for (let i = 0; i < children.length; i += 1) {
+        if (children && childrenLength > 1) {
+            for (let i = 0; i < childrenLength; i += 1) {
                 pages.push(children[i]);
             }
         } else if (children) {
@@ -53,10 +56,14 @@ export default class Carousel extends React.Component {
             </Text>
         }
 
+        const extras = this.props.children.filter( ex => ex.type !== PrayTimeLabel)
+
         pages = pages.map((page, i) => {
-            return <TouchableWithoutFeedback style={[{ ...this.state.size }, { backgroundColor: 'green' }]} key={`page${i}`}>
-                {page}
-            </TouchableWithoutFeedback>
+            if (page.type === PrayTimeLabel) {
+                return <TouchableWithoutFeedback style={[{ ...this.state.size }, { backgroundColor: 'green' }]} key={`page${i}`}>
+                    {page}
+                </TouchableWithoutFeedback>
+            }
         })
 
         const containerProps = {
@@ -69,13 +76,13 @@ export default class Carousel extends React.Component {
             ref={(c) => this.scrollView = c}
             horizontal
             pagingEnabled
-            showsHorizontalScrollIndicator = {false}
-            showsVerticalScrollIndicator = {false}
+            showsHorizontalScrollIndicator={false}
+            showsVerticalScrollIndicator={false}
             contentContainerStyle={[
                 styles.horizontalScroll,
                 this.props.contentContainerStyle,
                 {
-                    width: size.width * (children.length),
+                    width: size.width * (childrenLength),
                     height: size.height,
                 },
             ]}
@@ -83,7 +90,7 @@ export default class Carousel extends React.Component {
             <Image style={[
                 { position: 'absolute' },
                 {
-                    width: size.width * (children.length),
+                    width: size.width * (childrenLength),
                     height: size.height
                 }
             ]} source={require('./images/12941200434_12e6b178cc_k.jpg')} resizeMethod="auto">
@@ -91,8 +98,11 @@ export default class Carousel extends React.Component {
             {pages}
         </ScrollView>
 
+      
+
         return <View  {...containerProps} >
             {contents}
+            {extras}
         </View>
     }
 }

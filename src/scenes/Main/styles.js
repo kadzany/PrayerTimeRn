@@ -13,26 +13,43 @@ const DefaultStyle = StyleSheet.create({
         flex: 1,
         backgroundColor: 'transparent'
     },
-    cityName: {
+    infoContainer: {
+        flexDirection: 'row',
+    },
+    bottomInfoContainer: {
         backgroundColor: 'transparent',
         position: 'absolute',
-        bottom: 0,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
+        bottom: 0
+    },
+    cityName: {
+        flex: 1,
+        backgroundColor: 'transparent',
         color: 'white',
         paddingBottom: 4,
-        paddingLeft: 24,
+        paddingLeft: 0,
         fontSize: 14,
         fontWeight: '100',
+        textAlign: 'right'
     },
     positionIcon: {
         backgroundColor: 'transparent',
-        position: 'absolute',
-        bottom: 6,
+        height: 16,
+        width: 20
+    },
+    dateName: {
+        flex: 1,
+        backgroundColor: 'transparent',
+        color: 'white',
+        paddingBottom: 4,
+        fontSize: 14,
+        fontWeight: '100',
+        textAlign: 'left'
+    },
+    calendarIcon: {
+        backgroundColor: 'transparent',
         height: 16,
         width: 28
-    }
+    },
 })
 
 export default DefaultStyle

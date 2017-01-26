@@ -6,23 +6,21 @@ const PraytimeLabelStyle = StyleSheet.create({
     },
     prayerName: {
         color: 'rgba(64,64,64,1)',
-        fontSize: 14,
+        fontSize: 19,
         fontWeight: '100',
         textAlign: 'left',
-        paddingLeft: 10,
-        marginTop: 10
+        padding: 10,
     },
     prayerTime: {
         color: 'rgba(64,64,64,1)',
-        fontSize: 14,
+        fontSize: 19,
         fontWeight: '500',
+        alignSelf: 'flex-end',
         textAlign: 'right',
-        paddingRight: 10,
-        marginTop: -20
-
+        padding: 10,
     },
     prayerItem: {
-
+        flexDirection: 'row',
     }
 })
 
