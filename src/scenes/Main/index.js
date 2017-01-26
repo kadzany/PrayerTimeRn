@@ -12,23 +12,37 @@ import {
     View,
     Text,
     Dimensions,
-    Image
+    Image,
+    TouchableOpacity
 } from 'react-native'
 
 const {width, height} = Dimensions.get('window');
 
-const InformationLabel = () => (
-    <View style={[styles.infoContainer, styles.bottomInfoContainer]}>
-        <View style={[{ width: width * 0.5 }, styles.infoContainer]}>
-            <Image source={require('./g6.png')} style={[styles.calendarIcon]} resizeMode="contain" />
-            <Text style={[styles.dateName]}>January 26th, 2017</Text>
+/* city and date information label */
+const InformationLabel = class extends React.Component {
+    constructor(props){
+        super(props)
+        
+    }
+    _onPressButton() {
+        alert('button pressed')
+    }
+
+    render() {
+        return <View style={[styles.infoContainer, styles.bottomInfoContainer]}>
+            <View style={[{ width: width * 0.5 }, styles.infoContainer]}>
+                <Image source={require('./g6.png')} style={[styles.calendarIcon]} resizeMode="contain" />
+                <Text style={[styles.dateName]}>January 26th, 2017</Text>
+            </View>
+            <TouchableOpacity onPress={this._onPressButton}>
+                <View style={[{ width: width * 0.5 }, styles.infoContainer]}>
+                    <Text style={[styles.cityName]}>Bandung, Indonesia</Text>
+                    <Image source={require('./path2.png')} style={[styles.positionIcon]} resizeMode="contain" />
+                </View>
+            </TouchableOpacity>
         </View>
-        <View style={[{ width: width * 0.5 }, styles.infoContainer]}>
-            <Text style={[styles.cityName]}>Bandung, Indonesia</Text>
-            <Image source={require('./path2.png')} style={[styles.positionIcon]} resizeMode="contain" />
-        </View>
-    </View>
-)
+    }
+}
 
 export default class Main extends React.Component {
     constructor(props) {
@@ -37,6 +51,8 @@ export default class Main extends React.Component {
         this.state = {
             size: { width, height },
         };
+
+        console.log(this.props.navigator)
     }
 
     render() {
@@ -49,7 +65,6 @@ export default class Main extends React.Component {
                 <PraytimeLabel name="Isya" time="07:03 PM" />
                 <InformationLabel />
             </Carousel>
-
             <View style={[styles.bottomList]}>
                 <PrayerList></PrayerList>
             </View>

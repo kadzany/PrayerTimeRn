@@ -28,7 +28,6 @@ const DefaultStyle = StyleSheet.create({
         paddingBottom: 4,
         paddingLeft: 0,
         fontSize: 14,
-        fontWeight: '100',
         textAlign: 'right'
     },
     positionIcon: {
@@ -42,7 +41,6 @@ const DefaultStyle = StyleSheet.create({
         color: 'white',
         paddingBottom: 4,
         fontSize: 14,
-        fontWeight: '100',
         textAlign: 'left'
     },
     calendarIcon: {
