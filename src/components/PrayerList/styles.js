@@ -21,7 +21,12 @@ const PraytimeLabelStyle = StyleSheet.create({
     },
     prayerItem: {
         flexDirection: 'row',
-    }
+    },
+    separator: {
+        flex: 1,
+        height: StyleSheet.hairlineWidth,
+        backgroundColor: '#aaa',
+    },
 })
 
 export default PraytimeLabelStyle

@@ -47,7 +47,8 @@ export default class PrayerList extends React.Component {
         return <ListView
             style={styles.container}
             dataSource={this.state.dataSource}
-            renderRow={(data) => <Row {...data} />}>
+            renderRow={(data) => <Row {...data} />}
+            renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}>
         </ListView>
     }
 }
