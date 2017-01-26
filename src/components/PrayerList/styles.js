@@ -5,15 +5,15 @@ const PraytimeLabelStyle = StyleSheet.create({
         flex: 1,
     },
     prayerName: {
-        color: 'rgba(64,64,64,1)',
-        fontSize: 19,
+        color: 'rgba(96, 128, 128, 1)',
+        fontSize: 18,
         fontWeight: '100',
         textAlign: 'left',
         padding: 10,
     },
     prayerTime: {
-        color: 'rgba(64,64,64,1)',
-        fontSize: 19,
+        color: 'rgba(148, 148, 124, 1)',
+        fontSize: 15,
         fontWeight: '500',
         alignSelf: 'flex-end',
         textAlign: 'right',
@@ -21,11 +21,18 @@ const PraytimeLabelStyle = StyleSheet.create({
     },
     prayerItem: {
         flexDirection: 'row',
+        backgroundColor: 'transparent'
     },
     separator: {
         flex: 1,
         height: StyleSheet.hairlineWidth,
         backgroundColor: '#aaa',
+    },
+    linearGradient: {
+        flex: 1,
+    },
+    buttonText: {
+        backgroundColor: 'transparent',
     },
 })
 

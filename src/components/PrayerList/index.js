@@ -1,8 +1,10 @@
 import React from 'react'
 
-import PrayTime from '../../containers/PrayTime'
-
 import styles from './styles'
+
+import LinearGradient from 'react-native-linear-gradient';
+
+import PrayTime from '../../containers/PrayTime'
 
 import {
     ListView,
@@ -19,8 +21,8 @@ const {width, height} = Dimensions.get('window');
 
 const Row = (props) => (
     <View style={styles.prayerItem}>
-        <Text style={[styles.prayerName, {width: width * 0.5}]}>{toTitleCase(props.name)}</Text>
-        <Text style={[styles.prayerTime, {width: width * 0.5}]}>{props.value}</Text>
+        <Text style={[styles.prayerName, { width: width * 0.5 }]}>{toTitleCase(props.name)}</Text>
+        <Text style={[styles.prayerTime, { width: width * 0.5 }]}>{props.value}</Text>
     </View>
 )
 
@@ -44,11 +46,16 @@ export default class PrayerList extends React.Component {
         }
     }
     render() {
-        return <ListView
-            style={styles.container}
-            dataSource={this.state.dataSource}
-            renderRow={(data) => <Row {...data} />}
-            renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}>
-        </ListView>
+        return <LinearGradient
+            start={{ x: 0.0, y: 0.15 }} end={{ x: 0.15, y: 1.0 }}
+
+            colors={['#EDFFF7', '#FEFFED', '#FFFFFF']} style={styles.linearGradient}>
+            <ListView
+                style={styles.container}
+                dataSource={this.state.dataSource}
+                renderRow={(data) => <Row {...data} />}
+                renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}>
+            </ListView>
+        </LinearGradient>
     }
 }
