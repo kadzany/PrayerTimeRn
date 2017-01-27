@@ -48,7 +48,6 @@ export default class PrayerList extends React.Component {
     render() {
         return <LinearGradient
             start={{ x: 0.0, y: 0.15 }} end={{ x: 0.15, y: 1.0 }}
-
             colors={['#EDFFF7', '#FEFFED', '#FFFFFF']} style={styles.linearGradient}>
             <ListView
                 style={styles.container}

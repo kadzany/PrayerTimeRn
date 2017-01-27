@@ -10,7 +10,7 @@ import Main from './scenes/Main'
 import Settings from './scenes/Settings'
 
 import { createStore } from 'redux'
-import AppNavs from './reducers/AppNavs'
+import AppNavs from './reducers/AppNavs' // incomplete implementation of navigation since not used on child scene
 
 let store = createStore(AppNavs)
 
@@ -36,11 +36,16 @@ class App extends React.Component {
         }
     }
 
+    configureScene(route, routeStack) {
+        return Navigator.SceneConfigs.FloatFromBottom 
+    }
+
     render() {
         return <Navigator
             style={{ flex: 1 }}
             initialRoute={this.state.routes.filter(r => r.selected)[0]}
             renderScene={this.renderScene}
+            configureScene={this.configureScene}
             />
     }
 }

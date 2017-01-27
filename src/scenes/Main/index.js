@@ -19,13 +19,13 @@ import {
 const {width, height} = Dimensions.get('window');
 
 /* city and date information label */
-const InformationLabel = class extends React.Component {
+class InformationLabel extends React.Component {
     constructor(props){
         super(props)
-        
     }
+
     _onPressButton() {
-        alert('button pressed')
+        this.props.navigator.push({ index: 1 })
     }
 
     render() {
@@ -34,7 +34,7 @@ const InformationLabel = class extends React.Component {
                 <Image source={require('./g6.png')} style={[styles.calendarIcon]} resizeMode="contain" />
                 <Text style={[styles.dateName]}>January 26th, 2017</Text>
             </View>
-            <TouchableOpacity onPress={this._onPressButton}>
+            <TouchableOpacity onPress={this._onPressButton.bind(this)}>
                 <View style={[{ width: width * 0.5 }, styles.infoContainer]}>
                     <Text style={[styles.cityName]}>Bandung, Indonesia</Text>
                     <Image source={require('./path2.png')} style={[styles.positionIcon]} resizeMode="contain" />
@@ -51,8 +51,6 @@ export default class Main extends React.Component {
         this.state = {
             size: { width, height },
         };
-
-        console.log(this.props.navigator)
     }
 
     render() {
@@ -63,7 +61,7 @@ export default class Main extends React.Component {
                 <PraytimeLabel name="Asr" time="03:10 PM" />
                 <PraytimeLabel name="Maghrib" time="06:10 PM" />
                 <PraytimeLabel name="Isya" time="07:03 PM" />
-                <InformationLabel />
+                <InformationLabel navigator={this.props.navigator} />
             </Carousel>
             <View style={[styles.bottomList]}>
                 <PrayerList></PrayerList>

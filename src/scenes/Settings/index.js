@@ -1,16 +1,37 @@
 import React from 'react'
 
+import styles from './styles'
+
+import LinearGradient from 'react-native-linear-gradient';
+
 import {
     View,
-    Text
+    Text,
+    Button
 } from 'react-native'
 
 export default class Settings extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+
+    _onPressButton() {
+        this.props.navigator.pop();
+    }
+
     render() {
-        return <View>
-            <Text>
-                This is the settings content
-            </Text>
-        </View>
+        return <LinearGradient
+            start={{ x: 0.0, y: 0.25 }} end={{ x: 0.25, y: 1.0 }}
+            colors={['#EDFFF7', '#FEFFED', '#FFFFFF']} style={styles.linearGradient}>
+            <View style={styles.container}>
+                <View style={styles.settingsPage}>
+                    <Text style={styles.heading}>Select your location:</Text>
+                </View>
+                <Button
+                    title="Back"
+                    onPress={this._onPressButton.bind(this)}
+                    />
+            </View>
+        </LinearGradient>
     }
 }
