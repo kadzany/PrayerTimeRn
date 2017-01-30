@@ -4,9 +4,6 @@ const DefaultStyle = StyleSheet.create({
     container: {
         flex: 1,
     },
-    settingsPage:{
-        flex: 1
-    },
     linearGradient: {
         flex: 1,
     },

@@ -2,7 +2,9 @@ import React from 'react'
 
 import styles from './styles'
 
-import LinearGradient from 'react-native-linear-gradient';
+import LinearGradient from 'react-native-linear-gradient'
+
+import PrayerLocation from '../../components/PrayerLocation'
 
 import {
     View,
@@ -27,6 +29,7 @@ export default class Settings extends React.Component {
                 <View style={styles.settingsPage}>
                     <Text style={styles.heading}>Select your location:</Text>
                 </View>
+                <PrayerLocation/>
                 <Button
                     title="Back"
                     onPress={this._onPressButton.bind(this)}
