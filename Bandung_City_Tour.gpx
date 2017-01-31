@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" creator="Geovative Solutions GeoTours" version="1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+
+<metadata>
+  <name>Bandung City Tour</name>
+  <desc>Bandung City Tour</desc>
+  <author>
+    <name>hrizal, using GeoTours</name>
+    <link href="http://www.geovative.com/view?t=FDLL">
+      <text>Bandung City Tour</text>
+    </link>
+  </author>
+  <link href="http://www.geovative.com/view?t=FDLL">
+    <text>Bandung City Tour</text>
+  </link>
+  <time>2007-12-13T07:22:46</time>
+  <keywords>Bandung City Guide Audio Tour</keywords>
+</metadata>
+
+
+<wpt lat="-6.911436" lon="107.609614">
+<name>Kantor Walikota</name>
+<desc>Kantor Walikota Bandung
+Office of Bandung City Major</desc>
+<sym>Waypoint</sym>
+<extensions>
+        <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+            <gpxx:Proximity>609.6</gpxx:Proximity>
+            <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+        </gpxx:WaypointExtension>
+</extensions>
+</wpt>
+
+<wpt lat="-6.91224" lon="107.604561">
+<name>Pakuan</name>
+<desc>Palace of West Java Gouvernor</desc>
+<sym>Waypoint</sym>
+<extensions>
+        <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
+            <gpxx:Proximity>609.6</gpxx:Proximity>
+            <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+        </gpxx:WaypointExtension>
+</extensions>
+</wpt>
+</gpx>
