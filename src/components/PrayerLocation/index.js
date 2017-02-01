@@ -75,7 +75,6 @@ export default class PrayerLocation extends React.Component {
                 style={[{ flex: 1 }]}
                 initialRegion={this.state.currentRegion}
                 onRegionChange={this.onRegionChange.bind(this)}
-                
                 mapType="standard"
                 >
                 <MapView.Marker
