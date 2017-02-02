@@ -7,7 +7,8 @@ import {
     View,
     Image,
     TouchableOpacity,
-    Dimensions
+    Dimensions,
+    AsyncStorage
 } from 'react-native';
 
 import MapView from 'react-native-maps';
@@ -37,7 +38,7 @@ export default class PrayerLocation extends React.Component {
                 latitudeDelta: LATITUDE_DELTA,
                 longitudeDelta: LONGITUDE_DELTA,
             },
-            currentAddress: [],
+            currentAddress: {},
             showBubble: false
         }
         let watchId = null
@@ -98,7 +99,7 @@ export default class PrayerLocation extends React.Component {
             .then(res => {
                 this.setState({
                     currentAddress: {
-                        address: res[0].formattedAddress
+                        fullAddress: res[0].formattedAddress
                     }
                 })
             })
@@ -112,8 +113,13 @@ export default class PrayerLocation extends React.Component {
         })
     }
 
-    _onTapLocation(){
-        this.props.navigator.pop()
+    _onTapLocation() {
+        try {
+            AsyncStorage.setItem("location", this.state.currentAddress.fullAddress)
+            this.props.navigator.pop()
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     render() {
@@ -139,7 +145,7 @@ export default class PrayerLocation extends React.Component {
                 </TouchableOpacity>
                 <View style={[{ flex: 1 }, styles.textBubble]}>
                     <Text style={[{ fontWeight: '500', color: '#ffffff' }]}>Current Location:</Text>
-                    <Text style={[{ color: '#ffffff' }]}>{this.state.currentAddress.address}</Text>
+                    <Text style={[{ color: '#ffffff' }]}>{this.state.currentAddress.fullAddress}</Text>
                 </View>
             </View>
         </View>

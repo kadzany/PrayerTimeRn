@@ -13,14 +13,15 @@ import {
     Text,
     Dimensions,
     Image,
-    TouchableOpacity
+    TouchableOpacity,
+    AsyncStorage
 } from 'react-native'
 
 const {width, height} = Dimensions.get('window');
 
 /* city and date information label */
 class InformationLabel extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props)
     }
 
@@ -51,6 +52,13 @@ export default class Main extends React.Component {
         this.state = {
             size: { width, height },
         };
+    }
+
+    componentDidUpdate() {
+        // alert("test")
+        AsyncStorage.getItem("location").then((value) => {
+            alert(value);            
+        }).done()
     }
 
     render() {
