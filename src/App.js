@@ -37,7 +37,7 @@ class App extends React.Component {
     }
 
     configureScene(route, routeStack) {
-        return Navigator.SceneConfigs.FloatFromBottom 
+        return Navigator.SceneConfigs.PushFromRight 
     }
 
     render() {
@@ -45,7 +45,6 @@ class App extends React.Component {
             style={{ flex: 1 }}
             initialRoute={this.state.routes.filter(r => r.selected)[0]}
             renderScene={this.renderScene}
-            configureScene={this.configureScene}
             />
     }
 }
