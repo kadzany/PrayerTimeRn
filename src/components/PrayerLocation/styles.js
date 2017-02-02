@@ -9,7 +9,7 @@ var styles = StyleSheet.create({
     position: 'absolute' 
   },
   textBubble:{
-    backgroundColor: 'rgba(255,255,255,0.7)',
+    backgroundColor: 'rgba(128,128,128,0.5)',
     paddingHorizontal: 18,
     paddingVertical: 12,
     borderRadius: 0,

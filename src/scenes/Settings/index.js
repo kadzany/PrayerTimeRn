@@ -17,24 +17,22 @@ export default class Settings extends React.Component {
         super(props)
     }
 
-    _onPressButton() {
-        this.props.navigator.pop();
-    }
+    // _onPressButton() {
+    //     this.props.navigator.pop();
+    // }
 
     render() {
         return <LinearGradient
             start={{ x: 0.0, y: 0.25 }} end={{ x: 0.25, y: 1.0 }}
             colors={['#FDFFF7', '#FEFFED', '#FFFFFF']} style={styles.linearGradient}>
             <View style={styles.container}>
-                <View style={styles.settingsPage}>
-                    <Text style={styles.heading}>Select your location:</Text>
-                </View>
-                <PrayerLocation/>
-                <Button
-                    title="Back"
-                    onPress={this._onPressButton.bind(this)}
-                    />
+                <PrayerLocation navigator={this.props.navigator} />
             </View>
         </LinearGradient>
     }
 }
+
+// <Button
+//     title="Select this location"
+//     onPress={this._onPressButton.bind(this)}
+//     />
