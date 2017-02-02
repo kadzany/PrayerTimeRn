@@ -16,10 +16,12 @@ import Geocoder from 'react-native-geocoder';
 
 import Bubble from '../Bubble'
 
+import renderIf from './renderif.js'
+
 const LATITUDE_DELTA = 0
 const LONGITUDE_DELTA = 0
-const ICON_WIDTH = 48
-const ICON_HEIGHT = 48
+const ICON_WIDTH = 64
+const ICON_HEIGHT = 64
 
 const {width, height} = Dimensions.get('window');
 
@@ -35,7 +37,8 @@ export default class PrayerLocation extends React.Component {
                 latitudeDelta: LATITUDE_DELTA,
                 longitudeDelta: LONGITUDE_DELTA,
             },
-            currentAddress: []
+            currentAddress: [],
+            showBubble: false
         }
         let watchId = null
     }
@@ -80,7 +83,8 @@ export default class PrayerLocation extends React.Component {
                 longitude: region.longitude,
                 latitudeDelta: LATITUDE_DELTA,
                 longitudeDelta: LONGITUDE_DELTA,
-            }
+            },
+            showBubble: false
         });
     }
 
@@ -103,6 +107,13 @@ export default class PrayerLocation extends React.Component {
 
     _onSelectLocationButton() {
         // this.props.navigator.pop()
+        this.setState({
+            showBubble: true
+        })
+    }
+
+    _onTapLocation(){
+        this.props.navigator.pop()
     }
 
     render() {
@@ -114,16 +125,21 @@ export default class PrayerLocation extends React.Component {
                 onRegionChangeComplete={this.onRegionChangeComplete.bind(this)}
                 mapType="standard" />
             <View style={[styles.overlayContainer]}>
-                <TouchableOpacity style={[{ position: 'absolute', top: (height * 0.5) - (ICON_HEIGHT * 1.9), left: 0, width: width, alignItems: 'center'}]}>
-                    <Bubble />
-                </TouchableOpacity>
+                {
+                    renderIf(this.state.showBubble)(
+                        <TouchableOpacity style={[{ position: 'absolute', top: (height * 0.5) - (ICON_HEIGHT * 1.65), left: 0, width: width, alignItems: 'center' }]}
+                            onPress={this._onTapLocation.bind(this)}>
+                            <Bubble text="Tap here to pick this location" />
+                        </TouchableOpacity>
+                    )
+                }
                 <TouchableOpacity style={[{ position: 'absolute', top: (height * 0.5) - ICON_HEIGHT, left: (width * 0.5) - (ICON_WIDTH * 0.5) }]}
                     onPress={this._onSelectLocationButton.bind(this)}>
                     <Image style={[{ height: ICON_HEIGHT, width: ICON_WIDTH }]} source={require('./g4891.png')} resizeMode="contain" />
                 </TouchableOpacity>
                 <View style={[{ flex: 1 }, styles.textBubble]}>
-                    <Text style={[{ fontWeight: '500', fontSize: 11, color: '#ffffff' }]}>Current Location:</Text>
-                    <Text style={[{ fontSize: 10, color: '#ffffff' }]}>{this.state.currentAddress.address}</Text>
+                    <Text style={[{ fontWeight: '500', color: '#ffffff' }]}>Current Location:</Text>
+                    <Text style={[{ color: '#ffffff' }]}>{this.state.currentAddress.address}</Text>
                 </View>
             </View>
         </View>
