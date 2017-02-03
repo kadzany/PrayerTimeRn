@@ -99,9 +99,14 @@ export default class PrayerLocation extends React.Component {
             .then(res => {
                 this.setState({
                     currentAddress: {
-                        fullAddress: res[0].formattedAddress
+                        formattedAddress: res[0].formattedAddress,
+                        country: res[0].country,
+                        subAdminArea: res[0].subAdminArea
                     }
                 })
+
+                var test = this.getState();
+                console.log(test);
             })
             .catch(err => console.log(err))
     }
@@ -115,7 +120,7 @@ export default class PrayerLocation extends React.Component {
 
     _onTapLocation() {
         try {
-            AsyncStorage.setItem("location", this.state.currentAddress.fullAddress)
+            AsyncStorage.setItem("locationInfo", JSON.stringify(Object.assign({}, this.state.currentAddress)))
             this.props.navigator.pop()
         } catch (error) {
             console.log(error)
@@ -145,7 +150,7 @@ export default class PrayerLocation extends React.Component {
                 </TouchableOpacity>
                 <View style={[{ flex: 1 }, styles.textBubble]}>
                     <Text style={[{ fontWeight: '500', color: '#ffffff' }]}>Current Location:</Text>
-                    <Text style={[{ color: '#ffffff' }]}>{this.state.currentAddress.fullAddress}</Text>
+                    <Text style={[{ color: '#ffffff' }]}>{this.state.currentAddress.formattedAddress}</Text>
                 </View>
             </View>
         </View>
