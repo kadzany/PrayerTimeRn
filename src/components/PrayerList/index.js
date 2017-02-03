@@ -27,13 +27,13 @@ const Row = (props) => (
 )
 
 export default class PrayerList extends React.Component {
-    constructor() {
-        super()
-        
-        var pTimes = new PrayTime();
-        var times = pTimes.computeTime();
+    constructor(props) {
+        super(props)
+
+        console.log(this.props.times)
+
         var ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 })
-        var entries = Object.entries(times)
+        var entries = Object.entries(this.props.times)
         var map = []
         entries.forEach((value) => {
             map.push({

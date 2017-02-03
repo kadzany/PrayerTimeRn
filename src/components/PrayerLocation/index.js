@@ -117,7 +117,7 @@ export default class PrayerLocation extends React.Component {
 
     _onTapLocation() {
         try {
-            AsyncStorage.setItem("locationInfo", JSON.stringify(Object.assign({}, this.state.currentAddress)))
+            AsyncStorage.setItem("locationInfo", JSON.stringify(Object.assign({}, this.state.currentAddress, this.state.currentRegion)))
             this.props.navigator.pop()
         } catch (error) {
             console.log(error)
