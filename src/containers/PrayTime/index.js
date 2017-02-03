@@ -17,7 +17,7 @@ export default class PrayTime {
     computeTime(lat, lng){
         let PT = new PrayTimes('ISNA');
         date = new Date()
-        times = PT.getTimes(date, [lat, lng], date.getTimezoneOffset() / 60);
+        times = PT.getTimes(date, [lat, lng], (date.getTimezoneOffset() / 60) * -1);
         return times;
     }
 }

@@ -57,10 +57,12 @@ export default class Main extends React.Component {
                 subAdminArea: "No location",
                 country: "tap to select"
             },
-            times: {}
+            prayerList: null
         };
 
-        this.pTimes = new PrayTime();
+        this.pTimes = new PrayTime()
+
+        this._updateLocation()
     }
 
 
@@ -75,22 +77,23 @@ export default class Main extends React.Component {
 
             if (this.state.location.subAdminArea != obj.subAdminArea || this.state.location.country != obj.country) {
 
-                var t = this.pTimes.computeTime(obj.latitude, obj.longitude)
                 this.setState({
                     location: {
                         subAdminArea: obj.subAdminArea == null ? "" : obj.subAdminArea,
                         country: obj.country
-                    },
-                    times: t
+                    }
                 })
-
-                console.log(t)
-
             }
+            
+            var t = this.pTimes.computeTime(obj.latitude, obj.longitude)
+            this.setState({
+                prayerList: <PrayerList times={t}></PrayerList>
+            })
+
         }).done()
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this._updateLocation()
     }
 
@@ -109,7 +112,7 @@ export default class Main extends React.Component {
                 <InformationLabel navigator={this.props.navigator} location={this.state.location} />
             </Carousel>
             <View style={[styles.bottomList]}>
-                <PrayerList times={this.state.times}></PrayerList>
+                {this.state.prayerList}
             </View>
         </View>
     }
