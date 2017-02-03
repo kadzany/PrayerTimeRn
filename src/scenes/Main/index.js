@@ -37,7 +37,7 @@ class InformationLabel extends React.Component {
             </View>
             <TouchableOpacity onPress={this._onPressButton.bind(this)}>
                 <View style={[{ width: width * 0.5 }, styles.infoContainer]}>
-                    <Text style={[styles.cityName]}>{this.props.location.subAdminArea + "," + this.props.location.country}</Text>
+                    <Text style={[styles.cityName]}>{this.props.location.subAdminArea + ", " + this.props.location.country}</Text>
                     <Image source={require('./path2.png')} style={[styles.positionIcon]} resizeMode="contain" />
                 </View>
             </TouchableOpacity>
@@ -52,8 +52,8 @@ export default class Main extends React.Component {
         this.state = {
             size: { width, height },
             location: {
-                subAdminArea : "No location",
-                country: "tap to select your location"
+                subAdminArea: "No location",
+                country: "tap to select"
             }
         };
     }
@@ -63,13 +63,15 @@ export default class Main extends React.Component {
 
             var obj = JSON.parse(value);
 
-            if (obj != {} && (this.state.location.subAdminArea != obj.subAdminArea || this.state.location.country != obj.country)) {
-                this.setState({
-                    location: {
-                        subAdminArea : obj.subAdminArea,
-                        country: obj.country
-                    }
-                })
+            if (obj != null && (obj.hasOwnProperty('subAdminArea') && obj.hasOwnProperty('country'))) {
+                if (this.state.location.subAdminArea != obj.subAdminArea || this.state.location.country != obj.country) {
+                    this.setState({
+                        location: {
+                            subAdminArea: obj.subAdminArea,
+                            country: obj.country
+                        }
+                    })
+                }
             }
         }).done()
     }
