@@ -29,6 +29,7 @@ const Row = (props) => (
 export default class PrayerList extends React.Component {
     constructor() {
         super()
+        
         var pTimes = new PrayTime();
         var times = pTimes.computeTime();
         var ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 })

@@ -11,7 +11,7 @@ import PrayTimes from './compute'
 */
 
 export default class PrayTime {
-    constructor(){
+    constructor(props){
     }
 
     computeTime(){

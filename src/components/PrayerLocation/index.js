@@ -57,7 +57,7 @@ export default class PrayerLocation extends React.Component {
                     }
                 });
             },
-            (error) => alert(JSON.stringify(error)),
+            (error) => console.log(JSON.stringify(error)),
             //{ enableHighAccuracy: false, timeout: 20000, maximumAge: 1000 }
         )
 
@@ -104,9 +104,6 @@ export default class PrayerLocation extends React.Component {
                         subAdminArea: res[0].subAdminArea
                     }
                 })
-
-                var test = this.getState();
-                console.log(test);
             })
             .catch(err => console.log(err))
     }
@@ -134,6 +131,7 @@ export default class PrayerLocation extends React.Component {
                 initialRegion={this.state.currentRegion}
                 onRegionChange={this.onRegionChange.bind(this)}
                 onRegionChangeComplete={this.onRegionChangeComplete.bind(this)}
+                showsCompass={false}
                 mapType="standard" />
             <View style={[styles.overlayContainer]}>
                 {
@@ -148,7 +146,7 @@ export default class PrayerLocation extends React.Component {
                     onPress={this._onSelectLocationButton.bind(this)}>
                     <Image style={[{ height: ICON_HEIGHT, width: ICON_WIDTH }]} source={require('./g4891.png')} resizeMode="contain" />
                 </TouchableOpacity>
-                <View style={[{ flex: 1 }, styles.textBubble]}>
+                <View style={[{ flex: 1, width: width }, styles.textBubble]}>
                     <Text style={[{ fontWeight: '500', color: '#ffffff' }]}>Current Location:</Text>
                     <Text style={[{ color: '#ffffff' }]}>{this.state.currentAddress.formattedAddress}</Text>
                 </View>

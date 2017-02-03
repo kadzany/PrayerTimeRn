@@ -8,6 +8,8 @@ import PraytimeLabel from '../../components/PraytimeLabel'
 
 import PrayerList from '../../components/PrayerList'
 
+import PrayTime from '../../containers/PrayTime'
+
 import {
     View,
     Text,
@@ -37,7 +39,7 @@ class InformationLabel extends React.Component {
             </View>
             <TouchableOpacity onPress={this._onPressButton.bind(this)}>
                 <View style={[{ width: width * 0.5 }, styles.infoContainer]}>
-                    <Text style={[styles.cityName]}>{this.props.location.subAdminArea + ", " + this.props.location.country}</Text>
+                    <Text style={[styles.cityName]}>{this.props.location.subAdminArea == "" ? "" : this.props.location.subAdminArea + ", "}{this.props.location.country}</Text>
                     <Image source={require('./path2.png')} style={[styles.positionIcon]} resizeMode="contain" />
                 </View>
             </TouchableOpacity>
@@ -56,23 +58,38 @@ export default class Main extends React.Component {
                 country: "tap to select"
             }
         };
+
+        // let pTimes = new PrayTime();
     }
+
+
 
     _updateLocation() {
         AsyncStorage.getItem("locationInfo").then((value) => {
 
             var obj = JSON.parse(value);
 
-            if (obj != null && (obj.hasOwnProperty('subAdminArea') && obj.hasOwnProperty('country'))) {
-                if (this.state.location.subAdminArea != obj.subAdminArea || this.state.location.country != obj.country) {
-                    this.setState({
-                        location: {
-                            subAdminArea: obj.subAdminArea,
-                            country: obj.country
-                        }
-                    })
-                }
+            if (obj == null) return
+            if (!obj.hasOwnProperty('subAdminArea') && !obj.hasOwnProperty('country')) return
+            if (obj.subAdminArea == null) obj.subAdminArea = ""
+
+            console.log(obj)
+            // console.log(obj.hasOwnProperty('subAdminArea'))
+            // console.log(obj.hasOwnProperty('country'))
+            console.log(this.state.location)
+
+            if (this.state.location.subAdminArea != obj.subAdminArea || this.state.location.country != obj.country) {
+                this.setState({
+                    location: {
+                        subAdminArea: obj.subAdminArea == "" ? "" : obj.subAdminArea,
+                        country: obj.country
+                    }
+                })
+
+                // console.log(this.pTimes);
             }
+
+
         }).done()
     }
 
