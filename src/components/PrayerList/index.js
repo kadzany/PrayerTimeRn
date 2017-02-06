@@ -4,7 +4,7 @@ import styles from './styles'
 
 import LinearGradient from 'react-native-linear-gradient';
 
-import {toTitleCase} from '../../containers/Misc'
+import { toTitleCase } from '../../containers/Misc'
 
 import {
     ListView,
@@ -12,10 +12,6 @@ import {
     Text,
     Dimensions
 } from 'react-native'
-
-// const toTitleCase = (str) => {
-//     return str.replace(/\w\S*/g, (txt) => { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
-// }
 
 const {width, height} = Dimensions.get('window');
 
@@ -30,19 +26,20 @@ export default class PrayerList extends React.Component {
     constructor(props) {
         super(props)
         var ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 })
-        var entries = Object.entries(this.props.times)
-        var map = []
-        entries.forEach((value) => {
-            map.push({
-                name: value[0],
-                value: value[1]
-            })
-        });
 
         this.state = {
-            dataSource: ds.cloneWithRows(map)
+            dataSource: ds.cloneWithRows(this.props.times)
         }
     }
+
+    componentWillReceiveProps(nextProps) {
+        var ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 })
+
+        this.setState({
+            dataSource: ds.cloneWithRows(nextProps.times)
+        })
+    }
+
     render() {
         return <LinearGradient
             start={{ x: 0.0, y: 0.15 }} end={{ x: 0.15, y: 1.0 }}
