@@ -10,6 +10,8 @@ import PrayerList from '../../components/PrayerList'
 
 import PrayTime from '../../containers/PrayTime'
 
+import {toTitleCase} from '../../containers/Misc'
+
 import {
     View,
     Text,
@@ -57,7 +59,8 @@ export default class Main extends React.Component {
                 subAdminArea: "No location",
                 country: "tap to select"
             },
-            prayerList: null
+            prayerList: null,
+            prayerLabels: []
         };
 
         this.pTimes = new PrayTime()
@@ -83,12 +86,30 @@ export default class Main extends React.Component {
                         country: obj.country
                     }
                 })
+
+                var t = this.pTimes.computeTime(obj.latitude, obj.longitude)
+                var entries = Object.entries(t)
+                let mapped = []
+                entries.forEach((value) => {
+                    mapped.push({
+                        name: toTitleCase(value[0]),
+                        value: value[1]
+                    })
+                })
+
+                mapped = mapped.map((obj, i) => {
+                    return <PraytimeLabel name={obj.name} time={obj.value} key={`label${i}`} />
+                })
+
+                mapped.push(<InformationLabel navigator={this.props.navigator} location={this.state.location} key="InformationLabel0"/>)
+
+                this.setState({
+                    prayerList: <PrayerList times={t}></PrayerList>,
+                    prayerLabels: mapped
+                })
+
             }
-            
-            var t = this.pTimes.computeTime(obj.latitude, obj.longitude)
-            this.setState({
-                prayerList: <PrayerList times={t}></PrayerList>
-            })
+
 
         }).done()
     }
@@ -102,14 +123,14 @@ export default class Main extends React.Component {
     }
 
     render() {
+        /*<PraytimeLabel name="Fajr" time="05:00 AM" />
+        <PraytimeLabel name="Dhuhr" time="12:11 AM" />
+        <PraytimeLabel name="Asr" time="03:10 PM" />
+        <PraytimeLabel name="Maghrib" time="06:10 PM" />
+        <PraytimeLabel name="Isya" time="07:03 PM" /> */
         return <View style={styles.container}>
             <Carousel style={[styles.carousel, this.state.size]} >
-                <PraytimeLabel name="Fajr" time="05:00 AM" />
-                <PraytimeLabel name="Dhuhr" time="12:11 AM" />
-                <PraytimeLabel name="Asr" time="03:10 PM" />
-                <PraytimeLabel name="Maghrib" time="06:10 PM" />
-                <PraytimeLabel name="Isya" time="07:03 PM" />
-                <InformationLabel navigator={this.props.navigator} location={this.state.location} />
+                {this.state.prayerLabels}
             </Carousel>
             <View style={[styles.bottomList]}>
                 {this.state.prayerList}

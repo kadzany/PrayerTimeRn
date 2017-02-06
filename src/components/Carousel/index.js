@@ -2,7 +2,7 @@ import React from 'react'
 
 import styles from './styles'
 
-import PrayTimeLabel from '../PraytimeLabel'
+import PraytimeLabel from '../PraytimeLabel'
 
 import {
     StyleSheet,
@@ -42,7 +42,8 @@ export default class Carousel extends React.Component {
         const {size, pos} = this.state
         const children = this.props.children
         let pages = []
-        const childrenLength = this.props.children.filter(c => c.type === PrayTimeLabel).length;
+        const filteredChild = this.props.children.filter(c => c.type === PraytimeLabel)
+        const childrenLength = filteredChild ? filteredChild.length : 0;
 
         if (children && childrenLength > 1) {
             for (let i = 0; i < childrenLength; i += 1) {
@@ -56,10 +57,10 @@ export default class Carousel extends React.Component {
             </Text>
         }
 
-        const extras = this.props.children.filter( ex => ex.type !== PrayTimeLabel)
+        const extras = this.props.children.filter(ex => ex.type !== PraytimeLabel)
 
         pages = pages.map((page, i) => {
-            if (page.type === PrayTimeLabel) {
+            if (page.type === PraytimeLabel) {
                 return <TouchableWithoutFeedback style={[{ ...this.state.size }, { backgroundColor: 'green' }]} key={`page${i}`}>
                     {page}
                 </TouchableWithoutFeedback>
@@ -86,7 +87,7 @@ export default class Carousel extends React.Component {
                     height: size.height,
                 },
             ]}
-            >
+        >
             <Image style={[
                 { position: 'absolute' },
                 {
@@ -98,7 +99,7 @@ export default class Carousel extends React.Component {
             {pages}
         </ScrollView>
 
-      
+
 
         return <View  {...containerProps} >
             {contents}
