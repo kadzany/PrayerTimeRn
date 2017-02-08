@@ -124,11 +124,6 @@ export default class Main extends React.Component {
     }
 
     render() {
-        /*<PraytimeLabel name="Fajr" time="05:00 AM" />
-        <PraytimeLabel name="Dhuhr" time="12:11 AM" />
-        <PraytimeLabel name="Asr" time="03:10 PM" />
-        <PraytimeLabel name="Maghrib" time="06:10 PM" />
-        <PraytimeLabel name="Isya" time="07:03 PM" /> */
         return <View style={styles.container}>
             <Carousel style={[styles.carousel, this.state.size]} >
                 {this.state.prayerLabels}
